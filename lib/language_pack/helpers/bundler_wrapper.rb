@@ -60,6 +60,10 @@ class LanguagePack::Helpers::BundlerWrapper
     end
   end
 
+  def has_gemfile_lock?
+    File.exist?(@gemfile_lock_path)
+  end
+
   def specs
     @specs     ||= lockfile_parser.specs.each_with_object({}) {|spec, hash| hash[spec.name] = spec }
   end
@@ -112,7 +116,7 @@ class LanguagePack::Helpers::BundlerWrapper
 
   def parse_gemfile_lock
     instrument 'parse_bundle' do
-      gemfile_contents = File.read(@gemfile_lock_path)
+      gemfile_contents = File.exist?(@gemfile_lock_path) ? File.read(@gemfile_lock_path) : ''
       Bundler::LockfileParser.new(gemfile_contents)
     end
   end

@@ -1,7 +1,16 @@
 Heroku buildpack: Ruby
 ======================
 
-This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for Ruby, Rack, and Rails apps. It uses [Bundler](http://gembundler.com) for dependency management.
+This is a fork of the [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for Ruby, Rack, and Rails apps. It uses [Bundler](http://gembundler.com) for dependency management.
+
+Modifications
+-------------
+
+This fork makes two important modifications:
+
+1. It doesn't require a Gemfile.lock. If one is supplied it is used, but it's not necessary.
+2. It doesn't generate `config/database.yml` for "Ruby/Rack" apps. The behaviour remains the same for "Ruby/Rails" apps.
+
 
 Usage
 -----
